@@ -15,6 +15,11 @@
  */
 package org.timer4method.enums;
 
+/**
+ * Method levels accepted.
+ * @author Lucia
+ *
+ */
 public enum Timer4MethodLevels {
 	NONE, 
 	DEBUG, 

@@ -20,13 +20,13 @@ import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
-@Target(ElementType.METHOD)
-@Retention(RetentionPolicy.RUNTIME)
 /**
  * Annotation for the methods to evaluate the time elapsed
  * @author Lucia
  *
  */
+@Target(ElementType.METHOD)
+@Retention(RetentionPolicy.RUNTIME)
 public @interface Timer4Method {
 	/** Time elapsed necessary to write warning log */
 	public long maxTimeWarning() default 0;

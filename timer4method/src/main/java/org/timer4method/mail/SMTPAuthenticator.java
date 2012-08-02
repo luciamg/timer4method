@@ -17,6 +17,11 @@ package org.timer4method.mail;
 
 import javax.mail.PasswordAuthentication;
 
+/**
+ * Authenticator to send the information mail
+ * @author Lucia
+ *
+ */
 class SMTPAuthenticator extends javax.mail.Authenticator  {
 	private String user;
 	private String password;

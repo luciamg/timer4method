@@ -40,10 +40,7 @@ import org.springframework.web.context.request.SessionScope;
 		return context;
 	}
 
-	/**
-	 * Retorna un objeto de respuesta  mock HttpServletResponse object.
-	 *
-	 */
+	
 	protected MockHttpServletResponse getMockHttpServletResponse() {
 		return new MockHttpServletResponse();
 	}

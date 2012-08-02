@@ -15,6 +15,11 @@
  */
 package org.timer4method.exceptions;
 
+/**
+ * Specific exception thrown  by the Timer4Method classes
+ * @author Lucia
+ *
+ */
 public class Timer4MethodException extends Exception {
 
 	private static final long serialVersionUID = 1L;

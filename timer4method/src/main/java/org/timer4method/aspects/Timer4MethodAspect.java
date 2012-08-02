@@ -29,6 +29,12 @@ import org.timer4method.log.ITimer4MethodLogger;
 import org.timer4method.log.Timer4MethodLogFactory;
 import org.timer4method.mail.Timer4MethodMail;
 
+/**
+ * Aspect for control the elapsed time of a method, and show the log messeges depending on the configuration
+ * selected by the user.
+ * @author Lucia
+ *
+ */
 @Aspect
 public class Timer4MethodAspect {
 	private static final Log log = LogFactory.getLog(Timer4MethodAspect.class);
@@ -41,6 +47,13 @@ public class Timer4MethodAspect {
 	}
 
 
+	/**
+	 * Execute it around the method annotated with Time4Method annotation, getting the start and end time, and show the result
+	 * @param pjp			Proceeding join pont
+	 * @param timer4Method	Annotation
+	 * @return	The result of the method
+	 * @throws Throwable
+	 */
 	@Around(value="@annotation(timer4Method)", argNames="timer4Method")
 	public Object profile(final ProceedingJoinPoint pjp, final Timer4Method timer4Method) throws Throwable {
 		initTime4MethodAttrs(timer4Method);
@@ -51,12 +64,22 @@ public class Timer4MethodAspect {
 		return output;
 	}
 	
+	/**
+	 * Init the logger attributes, with the values of the annotation. In that version the user can change for each method
+	 * the values of the elapsed time to show the warning, error and send mail logs.
+	 * @param timer4Method	Annotation with the user values for the method
+	 */
 	private void initTime4MethodAttrs (final Timer4Method timer4Method) {
 		timer4MethodLogger.setTimeWarning(timer4Method.maxTimeWarning());
 		timer4MethodLogger.setTimeError(timer4Method.maxTimeError());		
 		timer4MethodLogger.setTimeMail(timer4Method.maxTimeMail());
 	}
 	
+	/**
+	 * Write the correspoding log, depending of the log level of the timer4method.properties.
+	 * @param elapsedTime	Elapsed time of the method execution
+	 * @param methodName	Method name
+	 */
 	private void writeLog (final Long elapsedTime, final String methodName) {		
 		if (!timer4MethodLogger.isNone()) {
 			if (timer4MethodLogger.isDebug()) {
@@ -81,6 +104,12 @@ public class Timer4MethodAspect {
 		}
 	}
 	
+	/**
+	 * Write the log on the console
+	 * @param type			Type of the log (DEBUG, WARNING, ERROR or ERROR-MAIL)
+	 * @param methodName	Method name
+	 * @param elapsedTime	Elapsed time of the method execution
+	 */
 	private void write (final String type, final String methodName, final Long elapsedTime) {
 		System.out.println(type + ": [" + sdf.format(new Date()) + " Timer4Method] " + methodName + " in " + elapsedTime + " miliseconds. ");
 	}

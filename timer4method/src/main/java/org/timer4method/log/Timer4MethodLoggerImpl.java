@@ -25,21 +25,39 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.timer4method.enums.Timer4MethodLevels;
 
+/**
+ * Implementation of the timer4MethodLogger. That class reads the global configuration from the timer4method.properties on the classpath, and
+ * controls when show the logs and send the email.
+ * @author Lucia
+ *
+ */
 class Timer4MethodLoggerImpl implements ITimer4MethodLogger {
 	
 	private static final Log logger = LogFactory.getLog(Timer4MethodLoggerImpl.class);
-	private String logLevel = "";
+	/** Level of the log (NONE, DEBUG, WARN, ERROR) */
+	private String logLevel = "";	
+	/** Maximun elapsed time to show warning log */
 	private Long timeWarning;
+	/** Maximun elapsed time to show error log */
 	private Long timeError;
+	/** Maximun elapsed time to send email */
 	private Long timeMail;
+	/** Host used to send email */
 	private String host;
+	/** User used to send email */
 	private String user;
+	/** Password used to send email */
 	private String password;
+	/** From used to send email */
 	private String from;
+	/** To used to send email */
 	private String to;
+	/** Subject used to send email */
 	private String subject;
 
-	
+	/**
+	 * Constructor. Read the global configuration from the timer4method.properties
+	 */
 	public Timer4MethodLoggerImpl() {		
 		Properties props = new Properties();
 		InputStream inputStream = this.getClass().getClassLoader().getResourceAsStream(Timer4MethodLogConstants.TIME4METHOD_PROPERTIES_FILE);
@@ -79,6 +97,7 @@ class Timer4MethodLoggerImpl implements ITimer4MethodLogger {
 		}
 	}
 	
+	@Override
 	public Boolean isNone() {
 		if (!StringUtils.isEmpty(logLevel) && logLevel.equals(Timer4MethodLevels.NONE.name())) {
 			return true;
@@ -86,19 +105,22 @@ class Timer4MethodLoggerImpl implements ITimer4MethodLogger {
 		return false;
 	}
 	
+	@Override
 	public Boolean isDebug() {
 		return logLevel.equals(Timer4MethodLevels.DEBUG.name());
 	}
 	
+	@Override
 	public Boolean isWarn() {
 		return logLevel.equals(Timer4MethodLevels.DEBUG.name()) || logLevel.equals(Timer4MethodLevels.WARN.name());
 	}
 	
+	@Override
 	public Boolean isError() {
 		return logLevel.equals(Timer4MethodLevels.DEBUG.name()) || logLevel.equals(Timer4MethodLevels.WARN.name()) || logLevel.equals(Timer4MethodLevels.ERROR.name());
 	}
 	
-
+	@Override
 	public Boolean canSendMail() {		
 		if (!StringUtils.isEmpty(host) && !StringUtils.isEmpty(from) && !StringUtils.isEmpty(to) && !StringUtils.isEmpty(subject)) {
 			return true;
@@ -106,6 +128,7 @@ class Timer4MethodLoggerImpl implements ITimer4MethodLogger {
 		return false;
 	}
 	
+	@Override
 	public Boolean sendAuthenticatedMail() {
 		if (!StringUtils.isEmpty(password) && !StringUtils.isEmpty(user)) {
 			return true;
@@ -113,6 +136,7 @@ class Timer4MethodLoggerImpl implements ITimer4MethodLogger {
 		return false;
 	}
 	
+	@Override
 	public Boolean writeWarning (final Long time) {
 		if (timeWarning != null && timeWarning.compareTo(time) < 0) {
 			return true;
@@ -120,6 +144,7 @@ class Timer4MethodLoggerImpl implements ITimer4MethodLogger {
 		return false;
 	}
 	
+	@Override
 	public Boolean writeError (final Long time) {
 		if (timeError != null && timeError.compareTo(time) < 0) {
 			return true;
@@ -127,6 +152,7 @@ class Timer4MethodLoggerImpl implements ITimer4MethodLogger {
 		return false;
 	}
 	
+	@Override
 	public Boolean writeMail (final Long time) {
 		if (timeMail != null && timeMail.compareTo(time) < 0) {
 			return true;
@@ -134,26 +160,32 @@ class Timer4MethodLoggerImpl implements ITimer4MethodLogger {
 		return false;
 	}	
 
+	@Override
 	public String getHost() {
 		return host;
 	}
 
+	@Override
 	public String getUser() {
 		return user;
 	}
 
+	@Override
 	public String getPassword() {
 		return password;
 	}
 
+	@Override
 	public String getFrom() {
 		return from;
 	}
 
+	@Override
 	public String getTo() {
 		return to;
 	}
 
+	@Override
 	public String getSubject() {
 		return subject;
 	}

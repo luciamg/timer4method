@@ -29,7 +29,11 @@ import javax.mail.internet.MimeMessage;
 import org.timer4method.exceptions.Timer4MethodException;
 import org.timer4method.log.ITimer4MethodLogger;
 
-
+/**
+ * Class to send the information email when the elapsed time of a method is bigger than the maximun mail time
+ * @author Lucia
+ *
+ */
 public class Timer4MethodMail {
 	
 	public static final void sendMail(final Long elapsedTime, final String methodName, final ITimer4MethodLogger timer4methodConfiguration) 

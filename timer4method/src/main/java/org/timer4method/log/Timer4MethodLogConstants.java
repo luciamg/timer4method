@@ -15,6 +15,10 @@
  */
 package org.timer4method.log;
 
+/**
+ * @author Lucia
+ *
+ */
 class Timer4MethodLogConstants {
 
 	public static String TIMER4METHOD_LOG_LEVEL = "timer4method.log.level";

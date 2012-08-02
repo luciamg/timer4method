@@ -15,6 +15,12 @@
  */
 package org.timer4method.log;
 
+/**
+ * Factory to choose what implementation of the logger will be use
+ * v 0.1 Only Timer4MethodLoggerImpl is available
+ * @author Lucia
+ *
+ */
 public class Timer4MethodLogFactory {
 
 	  private Timer4MethodLogFactory() {		  
