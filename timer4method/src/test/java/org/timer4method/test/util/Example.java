@@ -21,10 +21,34 @@ import org.timer4method.annotations.Timer4Method;
 @Component
 public class Example {
 
+	@Timer4Method()
+	public void showOnlyDebug() {		
+	}
+	
 	@Timer4Method(maxTimeWarning=10l)
-	public void methodExample() {
-		for (int i = 0; i < 3000; i++) {
-			String hello = "Hello";
+	public void showDebugAndWarning() {
+		final long start = System.currentTimeMillis();
+		long elapsed = 0;
+		while (elapsed < 15l) {
+			elapsed = System.currentTimeMillis() - start;
+		}
+	}
+	
+	@Timer4Method(maxTimeWarning=10l, maxTimeError=20l)
+	public void showDebugWarningAndError() {
+		final long start = System.currentTimeMillis();
+		long elapsed = 0;
+		while (elapsed < 30l) {
+			elapsed = System.currentTimeMillis() - start;
+		}
+	}
+	
+	@Timer4Method(maxTimeWarning=10l, maxTimeError=20l, maxTimeMail=30l)
+	public void showDebugWarningErrorAndSendEmail() {
+		final long start = System.currentTimeMillis();
+		long elapsed = 0;
+		while (elapsed < 40l) {
+			elapsed = System.currentTimeMillis() - start;
 		}
 	}
 }

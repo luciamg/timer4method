@@ -15,16 +15,60 @@
  */
 package org.timer4method.test;
 
+import java.io.ByteArrayOutputStream;
+import java.io.PrintStream;
+
+import org.junit.After;
+import org.junit.Assert;
+import org.junit.Before;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.timer4method.test.util.Example;
 
 public class Timer4MethodTest extends TestImpl {
+	private final ByteArrayOutputStream outContent = new ByteArrayOutputStream();
 	@Autowired
 	private Example example;
+	
+	@Before
+	public void setUpStreams() {
+	    System.setOut(new PrintStream(outContent));
+	}
+
+	@After
+	public void cleanUpStreams() {
+	    System.setOut(null);
+	}
 
 	@Test
-	public void testExample() {
-		example.methodExample();
+	public void testShowOnlyDebug() {
+		example.showOnlyDebug();
+		String output = outContent.toString();
+		boolean haveMsg = output.contains("DEBUG Timer4Method");
+		Assert.assertTrue(haveMsg);
+	}
+	
+	@Test
+	public void testShowDebugAndWarning() {
+		example.showDebugAndWarning();
+		String output = outContent.toString();
+		boolean haveMsg = output.contains("DEBUG Timer4Method") && output.contains("WARNING Timer4Method");
+		Assert.assertTrue(haveMsg);
+	}
+	
+	@Test
+	public void testShowDebugWarningAndError() {
+		example.showDebugWarningAndError();
+		String output = outContent.toString();
+		boolean haveMsg = output.contains("DEBUG Timer4Method") && output.contains("WARNING Timer4Method") && output.contains("ERROR Timer4Method");
+		Assert.assertTrue(haveMsg);
+	}
+	
+	@Test
+	public void testShowDebugWarningErrorAndSendEmail() {
+		example.showDebugWarningErrorAndSendEmail();
+		String output = outContent.toString();
+		boolean haveMsg = output.contains("DEBUG Timer4Method") && output.contains("WARNING Timer4Method") && output.contains("ERROR Timer4Method") && output.contains("ERROR-MAIL Timer4Method");
+		Assert.assertTrue(haveMsg);		
 	}
 }

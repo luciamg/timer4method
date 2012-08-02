@@ -44,6 +44,8 @@ class Timer4MethodLoggerImpl implements ITimer4MethodLogger {
 	private Long timeMail;
 	/** Host used to send email */
 	private String host;
+	/** Port used to send email */
+	private String port;
 	/** User used to send email */
 	private String user;
 	/** Password used to send email */
@@ -67,6 +69,7 @@ class Timer4MethodLoggerImpl implements ITimer4MethodLogger {
 
 				logLevel = props.getProperty(Timer4MethodLogConstants.TIMER4METHOD_LOG_LEVEL);
 				host = props.getProperty(Timer4MethodLogConstants.LOG4METHOD_EMAIL_SMTPHOST);
+				port = props.getProperty(Timer4MethodLogConstants.LOG4METHOD_EMAIL_SMTPPORT);
 				user = props.getProperty(Timer4MethodLogConstants.LOG4METHOD_EMAIL_SMTPUSERNAME);
 				password = props.getProperty(Timer4MethodLogConstants.LOG4METHOD_EMAIL_SMTPPASSWORD);
 				from = props.getProperty(Timer4MethodLogConstants.LOG4METHOD_EMAIL_FROM);
@@ -163,6 +166,11 @@ class Timer4MethodLoggerImpl implements ITimer4MethodLogger {
 	@Override
 	public String getHost() {
 		return host;
+	}
+	
+	@Override
+	public String getPort() {
+		return port;
 	}
 
 	@Override

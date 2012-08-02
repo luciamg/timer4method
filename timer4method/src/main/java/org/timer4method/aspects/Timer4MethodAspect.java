@@ -111,7 +111,7 @@ public class Timer4MethodAspect {
 	 * @param elapsedTime	Elapsed time of the method execution
 	 */
 	private void write (final String type, final String methodName, final Long elapsedTime) {
-		System.out.println(type + ": [" + sdf.format(new Date()) + " Timer4Method] " + methodName + " in " + elapsedTime + " miliseconds. ");
+		System.out.println(type + " Timer4Method: [" + sdf.format(new Date()) + "] " + methodName + " in " + elapsedTime + " miliseconds. ");
 	}
 	
 }

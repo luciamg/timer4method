@@ -30,6 +30,7 @@ class Timer4MethodLogConstants {
 	public static String MAX_TIME_MAIL = "timer4method.time.mail";
 
 	public static String LOG4METHOD_EMAIL_SMTPHOST = "timer4method.appender.email.SMTPHost";
+	public static String LOG4METHOD_EMAIL_SMTPPORT = "timer4method.appender.email.SMTPPort";
 	public static String LOG4METHOD_EMAIL_SMTPUSERNAME = "timer4method.appender.email.SMTPUsername";
 	public static String LOG4METHOD_EMAIL_SMTPPASSWORD = "timer4method.appender.email.SMTPPassword";
 	public static String LOG4METHOD_EMAIL_FROM = "timer4method.appender.email.From";

@@ -82,6 +82,11 @@ public interface ITimer4MethodLogger {
 	 */
 	String getHost();
 	/**
+	 * Get the port to send an email
+	 * @return
+	 */
+	String getPort();
+	/**
 	 * Get the username to send an authenticated email
 	 * @return
 	 */
