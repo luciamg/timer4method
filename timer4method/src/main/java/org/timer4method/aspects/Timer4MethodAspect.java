@@ -39,7 +39,7 @@ import org.timer4method.mail.Timer4MethodMail;
 public class Timer4MethodAspect {
 	private static final Log log = LogFactory.getLog(Timer4MethodAspect.class);
 	
-	private static final SimpleDateFormat sdf = new SimpleDateFormat("dd-MMM-yyyy hh:mm:ss");
+	private static final SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MMM-dd hh:mm:ss");
 	private ITimer4MethodLogger timer4MethodLogger;
 	
 	public Timer4MethodAspect() {
@@ -111,7 +111,7 @@ public class Timer4MethodAspect {
 	 * @param elapsedTime	Elapsed time of the method execution
 	 */
 	private void write (final String type, final String methodName, final Long elapsedTime) {
-		System.out.println(type + " Timer4Method: [" + sdf.format(new Date()) + "] " + methodName + " in " + elapsedTime + " miliseconds. ");
+		System.out.println("[" + sdf.format(new Date()) + "] : " + type + ", Timer4Method: " + methodName + " in " + elapsedTime + " miliseconds. ");
 	}
 	
 }

@@ -64,7 +64,7 @@ public class Timer4MethodMail {
 	
 		    // Setting the Subject and Content Type
 		    msg.setSubject(timer4methodConfiguration.getSubject());
-		    String message = "LogTime [EMAIL]: " + methodName + " elapsed " + elapsedTime + " miliseconds. ";
+		    String message = "Timer4Method [EMAIL]: " + methodName + " elapsed " + elapsedTime + " miliseconds. ";
 		    msg.setContent(message, "text/plain");
 		    Transport.send(msg);
 		} catch (AddressException e) {
