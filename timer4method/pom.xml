@@ -79,7 +79,7 @@
                     <artifactId>${project.artifactId}</artifactId>
                     <version>${project.version}</version>
                     <packaging>${project.packaging}</packaging>
-                    <url>file:///C:/Users/Lucia/git/luciamg/releases</url>
+                    <url>file:///C:/Users/Lucia/Documents/GitHub/luciamg/releases</url>
                     <file>${project.build.directory}/${project.build.finalName}.jar</file> 
                     <sources>${project.build.directory}/${project.build.finalName}-sources.jar</sources>     
                     <pomFile>${basedir}/pom-deploy.xml</pomFile>               
