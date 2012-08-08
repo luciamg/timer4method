@@ -4,6 +4,7 @@
 	<groupId>timer4method</groupId>
 	<artifactId>timer4method</artifactId>
 	<version>0.1</version>
+	<packaging>jar</packaging>
 	
 	<properties>		
 		<org.springframework-version>3.0.5.RELEASE</org.springframework-version>
@@ -23,29 +24,12 @@
 		</developer>
 	</developers>
 	
-	<scm>
-		<url>https://github.com/luciamg/timer4method/</url>
-		<connection>scm:git:git://github.com/luciamg/timer4method.git</connection>
-		<developerConnection>scm:git:git@github.com:luciamg/timer4method.git</developerConnection>
-	</scm>
-	
-	<distributionManagement>
-		<site>
-			<id>github-project-site</id>
-			<name>GitHub Project Pages</name>
-			<url>gitsite:git@github.com/luciamg/timer4method.git</url>
-			<!--
-			YOU MUST PUT THE FOLLOWING IN ~/.m2/settings.xml
-			
-			<servers>
-				<server>
-					<id>github-project-site</id>
-					<username>git</username>
-				</server>
-			</servers>
-			-->
-		</site>
-	</distributionManagement>
+	<repositories>
+		<repository>
+			<id>repo</id>
+			<url>https://github.com/luciamg/luciamg/tree/master/releases</url>
+		</repository>
+	</repositories>
 	
 	<build>
 		<sourceDirectory>${basedir}/src</sourceDirectory>
@@ -80,25 +64,27 @@
 		             <exclude> **/*test*.* </exclude>
 		          </excludes>
 		        </configuration>
-		      </plugin>		      
-		</plugins>      
-		<extensions>
-			<extension>
-				<groupId>org.apache.maven.scm</groupId>
-				<artifactId>maven-scm-provider-gitexe</artifactId>
-				<version>1.4</version>
-			</extension>
-			<extension>
-				<groupId>org.apache.maven.scm</groupId>
-				<artifactId>maven-scm-manager-plexus</artifactId>
-				<version>1.4</version>
-			</extension>
-			<extension>
-				<groupId>org.kathrynhuxtable.maven.wagon</groupId>
-				<artifactId>wagon-gitsite</artifactId>
-				<version>0.3.1</version>
-			</extension>
-		</extensions>
+		      </plugin>	
+		      <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-deploy-plugin</artifactId>
+                <version>2.7</version>
+                <goals>
+                    <goal>deploy-file</goal>
+                </goals>
+                <configuration>
+                    <repositoryId>repo</repositoryId>
+                    <groupId>${project.groupId}</groupId>
+                    <artifactId>${project.artifactId}</artifactId>
+                    <version>${project.version}</version>
+                    <packaging>${project.packaging}</packaging>
+                    <url>file:///C:/timer4method</url>
+                    <file>${project.build.directory}/${project.build.finalName}.jar</file> 
+                    <sources>${project.build.directory}/${project.build.finalName}-sources.jar</sources>     
+                    <pomFile>${basedir}/pom-deploy.xml</pomFile>               
+                </configuration>
+            </plugin>	     	     
+		</plugins>   		    	
 	</build>
 	<dependencies>
 		<!-- JRE -->
