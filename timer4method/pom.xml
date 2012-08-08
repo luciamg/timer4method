@@ -3,7 +3,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>timer4method</groupId>
 	<artifactId>timer4method</artifactId>
-	<version>0.1</version>
+	<version>0.2</version>
 	<packaging>jar</packaging>
 	
 	<properties>		
@@ -37,6 +37,7 @@
 		<plugins>
 			<plugin>
 				<artifactId>maven-compiler-plugin</artifactId>
+				<version>2.3.2</version>
 				<configuration>
 					<source>1.6</source>
 					<target>1.6</target>
@@ -78,7 +79,7 @@
                     <artifactId>${project.artifactId}</artifactId>
                     <version>${project.version}</version>
                     <packaging>${project.packaging}</packaging>
-                    <url>file:///C:/timer4method</url>
+                    <url>file:///C:/Users/Lucia/git/luciamg/releases</url>
                     <file>${project.build.directory}/${project.build.finalName}.jar</file> 
                     <sources>${project.build.directory}/${project.build.finalName}-sources.jar</sources>     
                     <pomFile>${basedir}/pom-deploy.xml</pomFile>               
