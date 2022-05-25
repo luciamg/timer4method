@@ -7,7 +7,7 @@
 	<packaging>jar</packaging>
 	
 	<properties>		
-		<org.springframework-version>3.0.5.RELEASE</org.springframework-version>
+		<org.springframework-version>5.2.22.RELEASE</org.springframework-version>
 		<org.springframework.test-version>3.0.5.RELEASE</org.springframework.test-version>
 	</properties>
 	
